@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OAuth Callback</title>
+  <style>
+    body { max-width: 760px; margin: 60px auto; padding: 0 20px;
+           font: 15px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    code, pre { background: #f4f6f8; padding: 2px 6px; border-radius: 4px; }
+    pre { padding: 16px; overflow-wrap: anywhere; white-space: pre-wrap; }
+    button { margin-top: 12px; padding: 8px 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>微博授权回调</h1>
+  <p>授权码（code）：</p>
+  <pre id="code">读取中…</pre>
+  <button id="copy" type="button">复制 code</button>
+  <p id="status"></p>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const code = params.get("code") || "";
+    const error = params.get("error") || "";
+    document.getElementById("code").textContent =
+      code || (error ? "授权失败：" + error : "未找到 code 参数");
+    document.getElementById("copy").addEventListener("click", async () => {
+      if (!code) return;
+      try {
+        await navigator.clipboard.writeText(code);
+        document.getElementById("status").textContent = "已复制";
+      } catch (e) {
+        document.getElementById("status").textContent = "复制失败，请手动选中上面的 code";
+      }
+    });
+  </script>
+</body>
+</html>
