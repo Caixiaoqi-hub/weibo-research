@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="POIresearch 的应用用途、数据流程和接口使用说明。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>应用说明｜POIresearch</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><img src="assets/favicon.svg" alt="" width="38" height="38"><span><strong>POIresearch</strong><small>城市微博时空研究</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">打开导航</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="主要导航">
+        <a href="index.html">项目首页</a><a class="active" href="docs.html">应用说明</a><a href="privacy.html">隐私与数据</a><a href="terms.html">使用规范</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="kicker">APPLICATION NOTES</span>
+        <h1>应用说明</h1>
+        <p>本页说明 POIresearch 的研究范围、申请微博开放平台接口的目的、数据处理流程和明确排除的行为。</p>
+        <div class="meta-line"><span>文档版本 1.0</span><span>更新于 2026-11-02</span><span>非商业学术研究</span></div>
+      </div>
+    </section>
+    <div class="container document-layout">
+      <aside class="document-nav">
+        <strong>本页目录</strong>
+        <a href="#purpose">项目目标</a>
+        <a href="#interface">接口用途</a>
+        <a href="#fields">数据字段</a>
+        <a href="#workflow">采集流程</a>
+        <a href="#limits">范围与限制</a>
+        <a href="#contact">联系与审核</a>
+      </aside>
+      <article class="document">
+        <section id="purpose">
+          <h2>1. 项目目标</h2>
+          <p>POIresearch 是一个独立的个人学术研究项目，研究上海市杨浦区城市空间的微博活动分布。项目关注公园、街区、校园、商业空间等公共地点在不同时间尺度上的活动差异。</p>
+          <p>项目不提供商业营销服务，不构建个人画像，不追踪单个用户的行动轨迹。研究成果以空间单元和时间段的汇总统计呈现。</p>
+          <div class="notice"><strong>项目性质：</strong>非商业、非公众服务、非微博官方产品。仅由项目研究者使用已登记的开放平台应用完成授权和数据获取。</div>
+        </section>
+        <section id="interface">
+          <h2>2. 申请接口的用途</h2>
+          <p>项目拟使用地点时间线能力，按公开坐标、查询半径和时间范围获取公开微博。相比之下，关键词搜索无法发现正文没有提到地名、但主动选择公开地点的帖子。</p>
+          <h3>申请能力</h3>
+          <ul>
+            <li>微博开放平台应用来源审核；</li>
+            <li>地点时间线相关接口权限；</li>
+            <li>使用范围仅限本项目申请中说明的杨浦区城市研究。</li>
+          </ul>
+          <h3>不申请的权限</h3>
+          <ul>
+            <li>不申请私信、通讯录、支付或其他账号敏感权限；</li>
+            <li>不采集用户真实 IP、设备标识或精确 GPS；</li>
+            <li>不提供批量账号注册、代登录或第三方用户登录服务。</li>
+          </ul>
+        </section>
+        <section id="fields">
+          <h2>3. 处理的数据字段</h2>
+          <p>仅保留完成空间统计所需的公开字段。若接口不返回某字段，项目不会通过其他方式绕过平台限制进行推断。</p>
+          <table class="data-table">
+            <thead><tr><th>字段</th><th>用途</th><th>处理原则</th></tr></thead>
+            <tbody>
+              <tr><td>微博编号</td><td>去重与结果复核</td><td>仅用于研究数据管理</td></tr>
+              <tr><td>发布时间</td><td>月度与时段聚合</td><td>不用于追踪个人</td></tr>
+              <tr><td>公开正文</td><td>主题分类与内容分析</td><td>结果只展示汇总</td></tr>
+              <tr><td>公开 POI 与坐标</td><td>区域校验和空间统计</td><td>不推断设备位置</td></tr>
+              <tr><td>平台公开 IP 属地</td><td>辅助核验内容来源</td><td>只保留公开省级信息</td></tr>
+              <tr><td>互动数量</td><td>描述内容公开传播程度</td><td>不作为个人评价依据</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="workflow">
+          <h2>4. 采集与处理流程</h2>
+          <ol>
+            <li>研究者在开放平台完成本人账号授权，授权凭证仅存放在受控设备。</li>
+            <li>按申请中说明的坐标范围和时间窗口调用公开地点接口。</li>
+            <li>对返回的微博编号去重，剔除与研究区域无关的误入数据。</li>
+            <li>仅对公开正文和公开地点进行分类、统计和可视化。</li>
+            <li>研究周期结束后删除原始明细，仅保留不可逆聚合结果。</li>
+          </ol>
+          <h3>访问控制</h3>
+          <p>网站本身不提供账号登录、数据查询或下载功能，不向公众转发微博内容。OAuth 回调页由 GitHub Pages 静态托管，只负责展示授权结果；研究者随后在受控设备上完成授权码交换，不将授权码发送给广告或分析服务。</p>
+        </section>
+        <section id="limits">
+          <h2>5. 范围与限制</h2>
+          <ul>
+            <li>研究范围限定为上海市杨浦区，不追求全国性覆盖。</li>
+            <li>只分析平台公开展示且接口返回的内容。</li>
+            <li>无法恢复已删除、设为私密或平台未提供的历史微博。</li>
+            <li>不对普通微博推断签到地点，不伪造位置字段。</li>
+            <li>不绕过平台频率限制、访问控制或账号安全机制。</li>
+          </ul>
+        </section>
+        <section id="contact">
+          <h2>6. 联系与审核信息</h2>
+          <p>应用名称：POIresearch。审核相关补充信息、研究说明和数据删除申请，请通过微博开放平台应用资料中登记的联系方式与项目研究者联系。</p>
+          <p>隐私和数据处理的完整说明见<a href="privacy.html">《隐私与数据说明》</a>，使用条件见<a href="terms.html">《使用规范》</a>。</p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="index.html"><img src="assets/favicon.svg" alt="" width="34" height="34"><span><strong>POIresearch</strong><small>公开微博 · 城市时空研究</small></span></a><p>独立、非商业的学术研究项目，非微博官方产品。</p></div><div class="footer-links"><a href="docs.html">应用说明</a><a href="privacy.html">隐私与数据</a><a href="terms.html">使用规范</a></div><p class="copyright">© <span data-year>2026</span> POIresearch</p></div></footer>
+</body>
+</html>

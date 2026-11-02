@@ -1,5 +1,215 @@
 <!doctype html>
-<meta charset="utf-8">
-<title>Weibo research</title>
-<h1>微博数据研究</h1>
-<p>用于学术研究的微博开放平台应用。</p>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="POIresearch 是一个面向城市研究的公开微博时空数据分析项目。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>POIresearch｜城市微博时空研究</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="POIresearch 首页">
+        <img src="assets/favicon.svg" alt="" width="38" height="38">
+        <span><strong>POIresearch</strong><small>城市微博时空研究</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span><span class="sr-only">打开导航</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="主要导航">
+        <a class="active" href="index.html">项目首页</a>
+        <a href="docs.html">应用说明</a>
+        <a href="privacy.html">隐私与数据</a>
+        <a href="terms.html">使用规范</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="pulse"></span>非商业学术研究项目</span>
+          <h1>理解城市，从公开的<br><em>微博时空信息</em>开始</h1>
+          <p class="hero-lead">
+            POIresearch 面向城市空间研究，使用微博开放平台经授权的接口，
+            分析指定区域内公开微博的时间与地点分布。项目只处理公开内容，
+            不获取真实 IP、设备信息或其他非公开个人数据。
+          </p>
+          <div class="actions">
+            <a class="button primary" href="docs.html">查看应用说明</a>
+            <a class="button secondary" href="privacy.html">了解数据边界</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>研究区域</dt><dd>上海市杨浦区</dd></div>
+            <div><dt>研究周期</dt><dd>2026 年 1–10 月</dd></div>
+            <div><dt>数据来源</dt><dd>公开微博内容</dd></div>
+          </dl>
+        </div>
+        <div class="hero-panel" aria-label="研究处理流程概览">
+          <div class="panel-top">
+            <span>研究流程</span>
+            <span class="status-chip">权限审核准备中</span>
+          </div>
+          <div class="map-orbit" aria-hidden="true">
+            <span class="map-grid"></span>
+            <span class="orbit orbit-a"></span>
+            <span class="orbit orbit-b"></span>
+            <span class="pin pin-a"></span>
+            <span class="pin pin-b"></span>
+            <span class="pin pin-c"></span>
+            <div class="map-label">
+              <small>STUDY AREA</small>
+              <strong>杨浦区</strong>
+              <span>31.27°N · 121.52°E</span>
+            </div>
+          </div>
+          <ol class="mini-flow">
+            <li><span>01</span>按坐标与时间获取公开帖子</li>
+            <li><span>02</span>提取时间、正文与公开地点</li>
+            <li><span>03</span>去重、汇总并开展空间分析</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">研究目标</span>
+          <h2>把公开帖子转化为可复核的城市空间样本</h2>
+          <p>项目聚焦城市公共空间活动，不使用个人画像或商业营销数据。</p>
+        </div>
+        <div class="cards three">
+          <article class="card">
+            <span class="card-number">01</span>
+            <h3>区域空间研究</h3>
+            <p>围绕指定坐标和半径获取公开帖子，分析公园、街区、校园与商业空间的活动分布。</p>
+          </article>
+          <article class="card">
+            <span class="card-number">02</span>
+            <h3>时间变化研究</h3>
+            <p>按日期聚合公开内容，观察不同月份和时段的活动变化，不追踪个人行为轨迹。</p>
+          </article>
+          <article class="card">
+            <span class="card-number">03</span>
+            <h3>可复核的数据流程</h3>
+            <p>采用微博编号去重、区域校验和聚合统计，并保留来源标识以保证研究可复核。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tinted">
+      <div class="container split">
+        <div>
+          <span class="kicker">接口用途</span>
+          <h2>为什么需要地点时间线接口</h2>
+          <p class="body-large">
+            普通关键词搜索只能发现正文提到地名或关键词的微博，难以覆盖未提及地点、但主动签到的公开内容。
+            地点时间线接口允许按坐标、范围和时间查询公开帖子，是开展区域空间研究的必要能力。
+          </p>
+          <ul class="check-list">
+            <li>仅用于申请中说明的学术研究场景</li>
+            <li>按坐标范围和日期分批查询，不进行全站抓取</li>
+            <li>仅处理平台已经公开展示的帖子与地点</li>
+            <li>不尝试获取用户真实 IP 或设备位置</li>
+          </ul>
+        </div>
+        <aside class="scope-card">
+          <span class="scope-label">拟申请能力</span>
+          <h3>place / nearby_timeline</h3>
+          <p>按公开坐标、半径和时间窗口检索微博地点内容。</p>
+          <div class="scope-row"><span>查询粒度</span><strong>坐标 + 日期</strong></div>
+          <div class="scope-row"><span>结果范围</span><strong>公开微博</strong></div>
+          <div class="scope-row"><span>使用主体</span><strong>研究项目本人</strong></div>
+          <div class="scope-row"><span>商业用途</span><strong>无</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">处理流程</span>
+          <h2>从请求到研究数据</h2>
+        </div>
+        <ol class="process">
+          <li><span>1</span><div><h3>授权</h3><p>仅由项目研究者使用已登记的应用与回调地址完成平台授权。</p></div></li>
+          <li><span>2</span><div><h3>查询</h3><p>按研究区域、日期和必要分页参数请求公开地点微博。</p></div></li>
+          <li><span>3</span><div><h3>校验</h3><p>按微博编号去重，并核验返回内容是否处于申请的研究区域。</p></div></li>
+          <li><span>4</span><div><h3>聚合</h3><p>对时间与地点进行统计，公开结果以不可逆汇总形式呈现。</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section governance">
+      <div class="container governance-grid">
+        <div>
+          <span class="kicker light">数据治理</span>
+          <h2>最小化收集，限定用途，研究结束即删除原始明细</h2>
+          <p>项目只处理研究所需的公开字段。原始内容不会出售、公开分发或用于广告投放。</p>
+          <a class="text-link light" href="privacy.html">阅读完整隐私与数据说明 <span>→</span></a>
+        </div>
+        <div class="governance-list">
+          <div><strong>公开</strong><span>仅处理平台公开展示的内容</span></div>
+          <div><strong>最少</strong><span>不采集与空间分析无关的信息</span></div>
+          <div><strong>安全</strong><span>原始数据仅保存在受控设备</span></div>
+          <div><strong>可删除</strong><span>研究结束后删除原始帖子明细</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container faq-grid">
+        <div class="section-heading compact">
+          <span class="kicker">常见问题</span>
+          <h2>项目边界</h2>
+          <p>如对数据使用有疑问，请通过微博开放平台应用资料中登记的联系方式联系项目研究者。</p>
+        </div>
+        <div class="accordion">
+          <details open>
+            <summary>是否获取用户的真实 IP 地址？</summary>
+            <p>不会。项目只可能使用平台已经公开显示的省级 IP 属地，不采集网络地址、设备标识或精确 GPS。</p>
+          </details>
+          <details>
+            <summary>是否会公开具体用户的微博？</summary>
+            <p>不会。研究结果以区域、时间和主题的汇总统计为主，不公开个人主页或可重新识别的个案信息。</p>
+          </details>
+          <details>
+            <summary>是否用于商业营销？</summary>
+            <p>不会。项目不提供商业服务，不进行广告投放，不出售或交换任何数据。</p>
+          </details>
+          <details>
+            <summary>如何申请删除数据？</summary>
+            <p>数据主体可通过开放平台应用资料中的联系方式提出申请。核验后，项目会删除相关原始记录及其衍生明细。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="index.html">
+          <img src="assets/favicon.svg" alt="" width="34" height="34">
+          <span><strong>POIresearch</strong><small>公开微博 · 城市时空研究</small></span>
+        </a>
+        <p>独立、非商业的学术研究项目，非微博官方产品。</p>
+      </div>
+      <div class="footer-links">
+        <a href="docs.html">应用说明</a>
+        <a href="privacy.html">隐私与数据</a>
+        <a href="terms.html">使用规范</a>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> POIresearch</p>
+    </div>
+  </footer>
+</body>
+</html>
